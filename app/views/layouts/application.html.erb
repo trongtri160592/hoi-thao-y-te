@@ -1,14 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang="vi">
   <head>
+    <meta charset="utf-8"/>
     <title>HoiThaoYTe</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.min.css'/>
+    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.4.0/animate.min.css'/>
+    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css'/>
+    <link rel="stylesheet" href="css/jquery.simplyscroll.css" />
+    <link rel="stylesheet" href="https://raw.githubusercontent.com/daneden/animate.css/master/animate.css"/>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"> </script>
   </head>
 
   <body>
     <%= yield %>
+    <%= javascript_include_tag 'main' %>
+    <script type="text/javascript" src="js/design1.js"> </script>
+    <script type="text/javascript" src="js/jquery.simplyscroll.js"> </script>
   </body>
 </html>
