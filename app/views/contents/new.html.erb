@@ -1,0 +1,37 @@
+<div class="col-md-3">
+  <div class="list-group">
+    <a class="list-group-item" href="/"><i class="fa fa-home fa-fw" aria-hidden="true"></i>&nbsp; Trang chủ</a>
+    <a class="list-group-item active" href="#"><i class="fa fa-book fa-fw" aria-hidden="true"></i>&nbsp; Danh mục</a>
+    <a class="list-group-item" href="#"><i class="fa fa-money fa-fw" aria-hidden="true"></i>&nbsp; Tài trợ</a>
+    <a class="list-group-item" href="#"><i class="fa fa-list fa-fw" aria-hidden="true"></i>&nbsp; Danh sách đăng ký</a>
+    <a class="list-group-item" href="/logout"><i class="fa fa-sign-out fa-fw" aria-hidden="true"></i>&nbsp; Đăng xuất</a>
+  </div>
+</div>
+<div class="col-md-9">
+  <% if !@content.errors.empty? %>
+      <div class = "alert alert-error">
+        <ul>
+          <% @content.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+          <% end %>
+        </ul>
+
+      </div>
+  <% end %>
+
+  <%= form_for :content, html: {multipart: true, id: "content_new_form"} do |f| %>
+      <%= f.label :title, "Title" %> </br>
+      <%= f.text_field :title, class: "form-control" %> </br>
+
+      <%= f.label :image, "Ảnh đại diện" %> </br>
+      <%= f.file_field :image, accept: 'image/png,image/jpeg' %> </br> </br>
+
+      <%= f.label :content, "Nội dung" %> </br>
+      <%= f.text_area :content, class: "content_editor" %> </br>
+
+      <%= f.submit "Áp dụng", class: "btn btn-primary", id: "lesson_upload", data: {disable_with: "Đang tải lên..."} %>
+      <script>
+          CKEDITOR.replace('content[content]');
+      </script>
+  <% end %>
+</div>

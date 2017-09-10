@@ -1,0 +1,8 @@
+<%= form_tag '/content' do %>
+<title></title>
+<textarea name="editor1"></textarea>
+<%= submit_tag "Submit" %>
+<script>
+    CKEDITOR.replace( 'editor1' );
+</script>
+<% end %>

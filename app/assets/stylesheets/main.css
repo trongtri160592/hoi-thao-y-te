@@ -37,3 +37,7 @@ a {
 div.card-columns {
 	margin-top: 15px;
 }
+
+#scroller li {
+    overflow: hidden;
+}
