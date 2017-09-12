@@ -42,6 +42,11 @@ gem 'less-rails'
 # Use for uploading file
 gem 'carrierwave'
 
+gem 'momentjs-rails'
+gem 'bootstrap3-datetimepicker-rails'
+
+gem 'jquery-rails'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

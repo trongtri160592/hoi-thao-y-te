@@ -14,5 +14,7 @@ Rails.application.routes.draw do
 
   get '/quan-ly' => 'managers#index'
   resources :contents, only: [:new, :create, :destroy]
+  get '/dang-ky' => 'event#register'
+  post '/dang-ky' => 'event#save'
 
 end
