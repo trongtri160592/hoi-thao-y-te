@@ -23,6 +23,13 @@ class ContentsController < ApplicationController
     redirect_to 'quan-ly'
   end
 
+  def show
+    @content = Content.find_by_id(params[:content_id])
+    if !@content
+      redirect_to '/'
+    end
+  end
+
   private
   def content_params
     params.require(:content).permit(:title, :image, :content)

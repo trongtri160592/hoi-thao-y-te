@@ -46,12 +46,14 @@
   <!-- <div class="row m-t-md"> -->
   <!-- <div class="col-xs-12 col-md-4"> -->
   <!-- Card -->
-  <a href="/dang-ky"><article class="card card-inverse animated fadeInLeft">
-    <%= image_tag "dang-ky.jpg", alt: "Đăng ký", class: "img-responsive" %>
-    <div class="card-img-overlay">
-      <h4 class="card-title">Đăng ký</h4>
-    </div>
-  </article> </a>
+  <a href="/dang-ky">
+    <article class="card card-inverse animated fadeInLeft">
+      <%= image_tag "dang-ky.jpg", alt: "Đăng ký", class: "img-responsive" %>
+      <div class="card-img-overlay">
+        <h4 class="card-title">Đăng ký</h4>
+      </div>
+    </article>
+  </a>
   <!-- .end Card -->
   <!-- </div> -->
   <!-- <div class="col-xs-12 col-md-4"> -->
@@ -81,6 +83,17 @@
       <h4 class="card-title">Nhà tài trợ</h4>
     </div>
   </article>
+
+  <% @contents.each do |content| %>
+      <a href="/<%= content.id %>">
+        <article class="card card-inverse animated fadeInRight">
+          <%= image_tag content.image, alt: content.title, class: "img-responsive" %>
+          <div class="card-img-overlay">
+            <h4 class="card-title"><%= content.title %></h4>
+          </div>
+        </article>
+      </a>
+  <% end %>
   <!-- .end Card -->
 
   <!-- </div> -->

@@ -12,11 +12,13 @@ Rails.application.routes.draw do
   post '/contents' => 'contents#create'
   get '/content' => 'contents#edit'
   
-  get '/registars' => 'registars#index'
+  get '/registrars' => 'registrars#index'
 
   get '/quan-ly' => 'managers#index'
   resources :contents, only: [:new, :create, :destroy]
   get '/dang-ky' => 'event#register'
   post '/dang-ky' => 'event#save'
+
+  get '/:content_id' => 'contents#show'
 
 end

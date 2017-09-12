@@ -1,9 +1,16 @@
-$(".card").hover(function () {
-    $(this).toggleClass("card-inverse");
-});
-
-(function($) {
-    $(function() { //on DOM ready
-        $("#scroller").simplyScroll();
+$(function() {
+    $(".card").mouseover(function () {
+        $(this).removeClass("card-inverse");
     });
-})(jQuery);
+
+    $(".card").mouseout(function () {
+        $(this).addClass("card-inverse");
+    });
+
+    (function ($) {
+        $(function () { //on DOM ready
+            $("#scroller").simplyScroll();
+        });
+    })(jQuery);
+});
+$(window).unload(function () { $(window).unbind('unload'); });

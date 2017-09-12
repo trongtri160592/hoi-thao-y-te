@@ -6,7 +6,8 @@ class EventController < ApplicationController
   def save
     @registrar = Registrar.new(registrar_params)
     if @registrar.save
-      redirect_to '/', notice: "Cảm ơn bạn đã đăng ký"
+      flash[:success] = "Cảm ơn bạn đã đăng ký"
+      redirect_to '/'
     else
       render 'register'
     end
