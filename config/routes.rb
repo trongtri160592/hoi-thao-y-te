@@ -11,14 +11,13 @@ Rails.application.routes.draw do
   post '/content/new' => 'contents#create'
   post '/contents' => 'contents#create'
   get '/content' => 'contents#edit'
+  get '/noi-dung/:content_id' => 'contents#show'
+  delete '/contents/:content_id' => 'contents#destroy'
   
   get '/registrars' => 'registrars#index'
 
   get '/quan-ly' => 'managers#index'
-  resources :contents, only: [:new, :create, :destroy]
   get '/dang-ky' => 'event#register'
   post '/dang-ky' => 'event#save'
-
-  get '/:content_id' => 'contents#show'
 
 end

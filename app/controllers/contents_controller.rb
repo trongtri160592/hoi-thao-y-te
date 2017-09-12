@@ -18,9 +18,13 @@ class ContentsController < ApplicationController
   end
 
   def destroy
-    @content = Content.find(params[:id])
-    @content.destroy
-    redirect_to 'quan-ly'
+    @content = Content.find_by_id(params[:content_id])
+    if @content
+      @content.destroy
+      redirect_to '/quan-ly'
+    else
+      redirect_to '/'
+    end
   end
 
   def show
