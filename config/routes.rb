@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   post '/content/new' => 'contents#create'
   post '/contents' => 'contents#create'
   get '/content' => 'contents#edit'
+  
+  get '/registars' => 'registars#index'
 
   get '/quan-ly' => 'managers#index'
   resources :contents, only: [:new, :create, :destroy]
