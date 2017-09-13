@@ -20,4 +20,6 @@ Rails.application.routes.draw do
   get '/dang-ky' => 'event#register'
   post '/dang-ky' => 'event#save'
 
+  get '/sponsors' => 'sponsors#index'
+  post '/sponsors/:id' => 'sponsors#create'
 end
