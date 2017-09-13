@@ -9,4 +9,8 @@ class ApplicationController < ActionController::Base
   def authorize
     redirect_to '/admin' unless current_user
   end
+
+  def render_404
+    redirect_to '/'
+  end
 end

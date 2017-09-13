@@ -107,12 +107,9 @@
   <div class="simply-scroll simply-scroll-container">
     <div class="simply-scroll-clip">
       <ul id="scroller" class="simply-scroll-list">
-        <li><%= image_tag "dang-ky", width: 290, height: 200, class: "sponsor" %>
-        <li><img src="img/dang-ky.jpg" width="290" height="200"/></li>
-        <li><img src="img/dang-ky.jpg" width="290" height="200"/></li>
-        <li><img src="img/dang-ky.jpg" width="290" height="200"/></li>
-        <li><img src="img/dang-ky.jpg" width="290" height="200"/></li>
-        <li><img src="img/dang-ky.jpg" width="290" height="200"/></li>
+        <% @sponsors.each do |sponsor| %>
+            <li><%= image_tag sponsor.logo, width: 290, height: 200, class: "sponsor" %>
+        <% end %>
       </ul>
     </div>
   </div>

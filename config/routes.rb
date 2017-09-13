@@ -21,5 +21,8 @@ Rails.application.routes.draw do
   post '/dang-ky' => 'event#save'
 
   get '/sponsors' => 'sponsors#index'
-  post '/sponsors/:id' => 'sponsors#create'
+  post '/sponsors' => 'sponsors#create'
+  delete '/sponsors/:id' => 'sponsors#destroy'
+
+  get '*path' => redirect("/")
 end

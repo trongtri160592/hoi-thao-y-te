@@ -1,6 +1,6 @@
 <div class="col-md-6 col-md-offset-3">
   <% if !@registrar.errors.empty? %>
-      <div class = "alert alert-error">
+      <div class="alert alert-error">
         <ul>
           <% @registrar.errors.full_messages.each do |msg| %>
               <li><%= msg %></li>
@@ -12,15 +12,16 @@
 
   <%= form_for :registrar, html: {multipart: true, id: "registrar_new_form"} do |f| %>
       <%= f.label :name, "Họ và tên (*)" %>
-      <%= f.text_field :name, class: "form-control" %> </br>
+      <%= f.text_field :name, class: "form-control", required: true, onInvalid: "this.setCustomValidity('Mục này không được để trống')" %> </br>
 
       <%= f.label :birth, "Ngày sinh (*)" %>
       <div class='input-group date' id='birth-day'>
-        <%= f.text_field :birth, class: "form-control" %>
+        <%= f.text_field :birth, class: "form-control", required: true, onInvalid: "this.setCustomValidity('Mục này không được để trống')" %>
         <span class="input-group-addon">
             <i class=" fa fa-calendar"></i>
         </span>
-      </div> </br>
+      </div>
+      </br>
 
       <%= f.label :nationality, "Quốc tịch" %>
       <%= f.text_field :nationality, class: "form-control" %> </br>
@@ -43,10 +44,10 @@
       <%= f.hidden_field :cvs_cache %></br> </br>
 
       <%= f.label :email, "Email (*)" %> &nbsp;
-      <%= f.text_field :email, class: "form-control", type: "email" %> </br>
+      <%= f.text_field :email, class: "form-control", type: "email", required: true, onInvalid: "this.setCustomValidity('Email không đúng định dạng')" %> </br>
 
       <%= f.label :phone, "Số điện thoại (*)" %> &nbsp;
-      <%= f.text_field :phone, class: "form-control", type: "number" %> </br> </br>
+      <%= f.text_field :phone, class: "form-control", type: "number", required: true, onInvalid: "this.setCustomValidity('Số điện thoại phải là chữ số')" %> </br> </br>
 
       <%= f.submit "Đăng ký", class: "btn btn-primary", data: {disable_with: "Đang tải lên..."} %>
       <script>
@@ -58,8 +59,13 @@
           $("#birth-day").datetimepicker({
               format: 'DD-MM-YYYY',
               maxDate: moment(),
-              minDate: new Date(currentYear-100, currentMonth, currentDate)
+              minDate: new Date(currentYear - 100, currentMonth, currentDate)
           });
       </script>
   <% end %>
 </div>
+<style>
+    body {
+        background-color: #eeeeee;
+    }
+</style>
