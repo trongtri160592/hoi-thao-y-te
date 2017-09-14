@@ -1,7 +1,7 @@
 <div class="col-md-3">
   <div class="list-group">
     <a class="list-group-item" href="/"><i class="fa fa-home fa-fw" aria-hidden="true"></i>&nbsp; Trang chủ</a>
-    <a class="list-group-item active" href="#"><i class="fa fa-book fa-fw" aria-hidden="true"></i>&nbsp; Danh mục</a>
+    <a class="list-group-item active" href="/quan-ly"><i class="fa fa-book fa-fw" aria-hidden="true"></i>&nbsp; Danh mục</a>
     <a class="list-group-item" href="/sponsors"><i class="fa fa-money fa-fw" aria-hidden="true"></i>&nbsp; Tài trợ</a>
     <a class="list-group-item" href="/registrars"><i class="fa fa-list fa-fw" aria-hidden="true"></i>&nbsp; Danh sách đăng ký</a>
     <a class="list-group-item" href="/logout"><i class="fa fa-sign-out fa-fw" aria-hidden="true"></i>&nbsp; Đăng xuất</a>
@@ -31,7 +31,14 @@
 
       <%= f.submit "Áp dụng", class: "btn btn-primary", id: "lesson_upload", data: {disable_with: "Đang tải lên..."} %>
       <script>
-          CKEDITOR.replace('content[content]');
+          CKEDITOR.replace('content[content]', {
+              height: '600px',
+              language: 'vi'
+          });
+          CKEDITOR.editorConfig = function (config) {
+              config.extraPlugins = 'imageuploader';
+              config.language = 'de';
+          }
       </script>
   <% end %>
 </div>

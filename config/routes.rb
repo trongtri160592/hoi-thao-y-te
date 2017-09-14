@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   post '/content/new' => 'contents#create'
   post '/contents' => 'contents#create'
   get '/contents/edit/:id' => 'contents#edit'
-  post 'contents/edit/:id' => 'contents#update'
+  post '/contents/edit/:id' => 'contents#update'
   get '/content' => 'contents#edit'
   get '/noi-dung/:content_id' => 'contents#show'
   delete '/contents/:content_id' => 'contents#destroy'
