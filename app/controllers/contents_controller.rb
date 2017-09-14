@@ -2,6 +2,18 @@ class ContentsController < ApplicationController
   before_action :authorize
 
   def edit
+	@content = Content.find(params[:id])
+  end
+  
+  def update
+    @content = User.find(params[:id])
+    if @content.update_attributes(content_params)
+      flash[:success] = "Bạn đã sửa đổi mục #{@content.title} thành công"
+	  redirect_to '/quan-ly'
+    else
+      flash[:danger] = "Bạn đã sửa đổi mục #{@content.title} thất bại"
+	  redirect_to '/quan-ly'
+    end
   end
 
   def new

@@ -16,6 +16,7 @@
       <th>Name</th>
       <th>Download Link</th>
       <th> </th>
+	  <th> </th>
     </tr>
     </thead>
 
@@ -24,8 +25,9 @@
         <tr>
           <td><%= content.title %></td>
           <td><%= link_to "Download image", content.image.url %></td>
-          <td><%= button_to "Delete", "/contents/#{content.id}", method: :delete, class: "btn btn-danger", confirm: "Are you sure that you wish to delete #{content.title}?" %></td>
-        </tr>
+		  <td><%= link_to ("<i class='fa fa-pencil-square-o'></i>&nbsp;Sửa").html_safe, "/contents/edit/#{content.id}" %></td>
+          <td><%= button_to ("<i class='fa fa-trash-o'></i>&nbsp; Xóa").html_safe, "/contents/#{content.id}", method: :delete, class: "btn btn-danger", confirm: "Are you sure that you wish to delete #{content.title}?" %></td>
+		</tr>
     <% end %>
     </tbody>
 
