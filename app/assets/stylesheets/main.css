@@ -53,3 +53,9 @@ div.card-columns {
 #scroller li {
     overflow: hidden;
 }
+
+.sponsor {
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+}

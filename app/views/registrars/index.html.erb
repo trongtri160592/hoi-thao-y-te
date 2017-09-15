@@ -43,6 +43,8 @@
     </tbody>
 
   </table>
+
+  <%= will_paginate @registrars, previous_label: 'Trước', next_label: 'Sau', renderer: BootstrapPagination::Rails %>
 </div>
 
 <% else %>

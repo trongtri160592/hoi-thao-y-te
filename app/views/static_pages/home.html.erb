@@ -104,14 +104,10 @@
 
 <!--Footer-->
 <footer>
-  <div class="simply-scroll simply-scroll-container">
-    <div class="simply-scroll-clip">
-      <ul id="scroller" class="simply-scroll-list">
-        <% @sponsors.each do |sponsor| %>
-            <li><%= image_tag sponsor.logo, width: 290, height: 200, class: "sponsor" %>
-        <% end %>
-      </ul>
-    </div>
-  </div>
+  <ul id="scroller" class="simply-scroll-list">
+    <% @sponsors.each do |sponsor| %>
+        <li><%= image_tag sponsor.logo, class: "sponsor" %>
+    <% end %>
+  </ul>
 </footer>
 <!--/.Footer-->

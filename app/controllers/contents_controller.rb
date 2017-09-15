@@ -1,11 +1,11 @@
 class ContentsController < ApplicationController
-  before_action :authorize
-
   def edit
+    redirect_to '/admin' unless current_user
     @content = Content.find(params[:id])
   end
 
   def update
+    redirect_to '/admin' unless current_user
     @content = Content.find(params[:id])
     if @content.update_attributes(content_params)
       flash[:success] = "Bạn đã sửa đổi mục #{@content.title} thành công"
@@ -17,10 +17,12 @@ class ContentsController < ApplicationController
   end
 
   def new
+    redirect_to '/admin' unless current_user
     @content = Content.new
   end
 
   def create
+    redirect_to '/admin' unless current_user
     @content = Content.new(content_params)
     if @content.save
       redirect_to '/quan-ly', notice: "#{@content.title} has been uploaded."
@@ -30,6 +32,7 @@ class ContentsController < ApplicationController
   end
 
   def destroy
+    redirect_to '/admin' unless current_user
     @content = Content.find_by_id(params[:content_id])
     if @content
       @content.destroy
