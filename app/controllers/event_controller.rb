@@ -6,8 +6,13 @@ class EventController < ApplicationController
   def save
     @registrar = Registrar.new(registrar_params)
     if @registrar.save
-      flash[:success] = "Cảm ơn bạn đã đăng ký"
-      redirect_to '/'
+      if I18n.locale == :vi
+        flash[:success] = "Cảm ơn bạn đã đăng ký"
+        redirect_to '/'
+      else
+        flash[:success] = "Thank you for registering"
+        redirect_to '/en'
+      end
     else
       render 'register'
     end

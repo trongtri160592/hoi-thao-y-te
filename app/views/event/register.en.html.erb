@@ -1,0 +1,71 @@
+<div class="col-md-6 col-md-offset-3">
+  <% if !@registrar.errors.empty? %>
+      <div class="alert alert-error">
+        <ul>
+          <% @registrar.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+          <% end %>
+        </ul>
+
+      </div>
+  <% end %>
+
+  <%= form_for :registrar, html: {multipart: true, id: "registrar_new_form"} do |f| %>
+      <%= f.label :name, "Full name (*)" %>
+      <%= f.text_field :name, class: "form-control", required: true %> </br>
+
+      <%= f.label :birth, "Date of birth (*)" %>
+      <div class='input-group date' id='birth-day'>
+        <%= f.text_field :birth, class: "form-control", required: true %>
+        <span class="input-group-addon">
+            <i class=" fa fa-calendar"></i>
+        </span>
+      </div>
+      </br>
+
+      <%= f.label :nationality, "Nationality" %>
+      <%= f.text_field :nationality, class: "form-control" %> </br>
+
+      <%= f.label :company, "Company / Organization" %>
+      <%= f.text_field :company, class: "form-control" %> </br>
+
+      <%= f.label :job, "Job" %>
+      <%= f.text_field :job, class: "form-control" %> </br>
+
+      <%= f.label :domain, "Scope of business" %>
+      <%= f.text_field :domain, class: "form-control" %> </br>
+
+      <%= f.label :image, "Image" %> &nbsp;
+      <%= f.file_field :image, accept: 'image/png,image/jpeg' %>
+      <%= f.hidden_field :image_cache %> </br> </br>
+
+      <%= f.label :cvs, "CVs" %> &nbsp;
+      <%= f.file_field :cvs, accept: 'application/msword,application/pdf' %>
+      <%= f.hidden_field :cvs_cache %></br> </br>
+
+      <%= f.label :email, "Email (*)" %> &nbsp;
+      <%= f.text_field :email, class: "form-control", type: "email", required: true %> </br>
+
+      <%= f.label :phone, "Phone number (*)" %> &nbsp;
+      <%= f.text_field :phone, class: "form-control", type: "number", required: true %> </br> </br>
+
+      <%= f.submit "Register", class: "btn btn-primary", data: {disable_with: "Uploading..."} %>
+      <script>
+          var date = new Date();
+          var currentMonth = date.getMonth();
+          var currentDate = date.getDate();
+          var currentYear = date.getFullYear();
+
+          $("#birth-day").datetimepicker({
+              format: 'DD-MM-YYYY',
+              maxDate: moment(),
+              minDate: new Date(currentYear - 100, currentMonth, currentDate)
+          });
+      </script>
+  <% end %>
+</div>
+<style>
+    body {
+        background-color: #eeeeee;
+    }
+</style>

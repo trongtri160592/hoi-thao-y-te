@@ -1,3 +1,7 @@
+body {
+    background-color: #f5f8fa;
+}
+
 a {
     -webkit-transition: .25s all;
     transition: .25s all;
@@ -54,8 +58,16 @@ div.card-columns {
     overflow: hidden;
 }
 
+
 .sponsor {
     object-fit: contain;
     width: 100%;
     height: 100%;
+}
+
+.img-responsive {
+    width:100%;
+    height:100%;
+    object-fit: cover;
+    overflow: hidden;
 }

@@ -20,8 +20,11 @@
   <% end %>
 
   <%= form_for :content, html: {multipart: true, id: "content_new_form"} do |f| %>
-      <%= f.label :title, "Title" %> </br>
+      <%= f.label :title, "Tiêu đề" %> </br>
       <%= f.text_field :title, class: "form-control" %> </br>
+
+      <%= f.label :english_title, "English title" %> </br>
+      <%= f.text_field :english_title, class: "form-control" %> </br>
 
       <%= f.label :image, "Ảnh đại diện" %> </br>
       <%= f.file_field :image, accept: 'image/png,image/jpeg' %> </br> </br>
@@ -29,15 +32,22 @@
       <%= f.label :content, "Nội dung" %> </br>
       <%= f.text_area :content, class: "content_editor" %> </br>
 
+      <%= f.label :english_content, "Content" %> </br>
+      <%= f.text_area :english_content, class: "content_editor" %> </br>
+
       <%= f.submit "Áp dụng", class: "btn btn-primary", id: "lesson_upload", data: {disable_with: "Đang tải lên..."} %>
       <script>
           CKEDITOR.replace('content[content]', {
               height: '600px',
               language: 'vi'
           });
+          CKEDITOR.replace('content[english_content]', {
+              height: '600px',
+              language: 'en'
+          });
           CKEDITOR.editorConfig = function (config) {
               config.extraPlugins = 'imageuploader';
-              config.language = 'de';
+              config.language = 'en';
           }
       </script>
   <% end %>

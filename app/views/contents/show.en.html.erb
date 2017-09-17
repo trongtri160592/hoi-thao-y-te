@@ -1,0 +1,14 @@
+<div class="row" style="padding: 0px; overflow:hidden; height:150px;">
+  <div class="col-xs-12">
+    <a class="navbar-brand logo" href="#">
+      <!-- place your image here -->
+      <%= image_tag "banner.jpg", alt: "company logo", style: "width: 100%;" %>
+    </a>
+  </div>
+</div>
+
+<div class="row">
+  <div class="category_content">
+  <%= @content.english_content.html_safe %>
+  </div>
+</div>

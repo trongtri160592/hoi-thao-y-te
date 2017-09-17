@@ -1,0 +1,27 @@
+<% if current_user %>
+    <div class="col-md-3">
+      <div class="list-group">
+        <a class="list-group-item" href="/"><i class="fa fa-home fa-fw" aria-hidden="true"></i>&nbsp; Trang chủ</a>
+        <a class="list-group-item" href="/quan-ly"><i class="fa fa-book fa-fw" aria-hidden="true"></i>&nbsp; Danh
+          mục</a>
+        <a class="list-group-item" href="/sponsors"><i class="fa fa-money fa-fw" aria-hidden="true"></i>&nbsp;Tài
+          trợ</a>
+        <a class="list-group-item" href="/registrars"><i class="fa fa-list fa-fw" aria-hidden="true"></i>&nbsp; Danh
+          sách đăng ký</a>
+        <a class="list-group-item active" href="/news"><i class="fa fa-newspaper-o fa-fw" aria-hidden="true"></i>&nbsp;
+          News</a>
+        <a class="list-group-item" href="/logout"><i class="fa fa-sign-out fa-fw" aria-hidden="true"></i>&nbsp; Đăng
+          xuất</a>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <%= form_for :news, url: "/news", html: {multipart: true, id: "sponsor_new_form"} do |f| %>
+          <%= f.label :content %> </br>
+          <% @old_content = @news.content if @news %>
+          <%= f.text_field :content, class: "form-control", value: @old_content %> </br>
+          <%= submit_tag "Áp dụng", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+<% else %>
+    <h1> Bạn phải <%= link_to "đăng nhập", "/logout" %> để xem được trang này</h1>
+<% end %>
