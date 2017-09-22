@@ -17,6 +17,6 @@ class NewsController < ApplicationController
 
   private
   def news_params
-    params.require(:news).permit(:content);
+    params.require(:news).permit(:content, :english_content);
   end
 end

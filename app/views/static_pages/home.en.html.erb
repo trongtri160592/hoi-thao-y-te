@@ -1,98 +1,114 @@
-<p>
-  <%= link_to_unless I18n.locale == :vi, "Tiếng Việt", locale: :vi %>
-  |
-  <%= link_to_unless I18n.locale == :en, "English", locale: :en %>
-</p>
-<!-- banner -->
-<div class="row" style="padding: 0px; overflow:hidden; height:150px;">
-  <div class="col-xs-12">
-    <a class="navbar-brand logo" href="#">
-      <!-- place your image here -->
-      <%= image_tag "banner.jpg", alt: "company logo", style: "width: 100%;" %>
-    </a>
-  </div>
-</div>
-<!-- end banner -->
-
-<!-- running news -->
-<div id="running-news">
-  <% if @news %>
-      <marquee behavior="scroll" direction="left"><%= @news.content %></marquee>
-  <% end %>
-</div>
-<!-- end runnig news -->
-
-<div class="card-columns">
-  <% if false %>
-      <div class="card card-inverse animated fadeInLeft">
-        <%= image_tag "don-vi-to-chuc.jpg", alt: "Đơn vị tổ chức", class: "img-responsive" %>
-        <div class="card-img-overlay">
-          <h4 class="card-title">Đơn vị tổ chức</h4>
-        </div>
-      </div>
-      <div class="card card-inverse animated fadeInDown">
-        <%= image_tag "thong-tin-hoi-thao.jpg", alt: "Thông tin hội thảo", class: "img-responsive" %>
-        <div class="card-img-overlay">
-          <h4 class="card-title">Thông tin hội thảo</h4>
-        </div>
-      </div>
-      <div class="card card-inverse animated fadeInRight">
-        <%= image_tag "chuong-trinh-hoi-thao.png", alt: "Chương trình hội thảo", class: "img-responsive" %>
-        <div class="card-img-overlay">
-          <h4 class="card-title">Chương trình hội thảo</h4>
-        </div>
-      </div>
-      <div class="card card-inverse animated fadeInDown">
-        <%= image_tag "khach-san.jpg", alt: "Khách sạn và du lịch", class: "img-responsive" %>
-        <div class="card-img-overlay">
-          <h4 class="card-title">Khách sạn và du lịch</h4>
-        </div>
-      </div>
-      <div class="card card-inverse animated fadeInRight">
-        <%= image_tag "hanoi.jpg", alt: "Thông tin về hà nội", class: "img-responsive" %>
-        <div class="card-img-overlay">
-          <h4 class="card-title">Thông tin về hà nội</h4>
-        </div>
-      </div>
-      <!-- .end Card -->
-
-      <!-- Card -->
-      <div class="card card-inverse animated fadeInRight">
-        <%= image_tag "nha-tai-tro.jpg", alt: "Nhà tài trợ", class: "img-responsive" %>
-        <div class="card-img-overlay">
-          <h4 class="card-title">Nhà tài trợ</h4>
-        </div>
-      </div>
-  <% end %>
-
-  <a href="/en/dang-ky">
-    <div class="card card-inverse animated fadeInLeft">
-      <%= image_tag "dang-ky.jpg", alt: "Registration", class: "img-responsive" %>
-      <div class="card-img-overlay">
-        <h4 class="card-title">Registration</h4>
-      </div>
+<div class="col-md-10">
+  <p>
+    <%= link_to_unless I18n.locale == :vi, "Tiếng Việt", locale: :vi %>
+    |
+    <%= link_to_unless I18n.locale == :en, "English", locale: :en %>
+  </p>
+  <!-- banner -->
+  <div class="row" style="padding: 0px; overflow:hidden; height:150px;">
+    <div class="col-xs-12">
+      <a class="navbar-brand logo" href="#">
+        <!-- place your image here -->
+        <%= image_tag "banner.jpg", alt: "company logo", style: "width: 100%;" %>
+      </a>
     </div>
-  </a>
+  </div>
+  <!-- end banner -->
 
-  <% @contents.each do |content| %>
-      <a href="/en/noi-dung/<%= content.id %>">
-        <div class="card card-inverse animated fadeInRight">
-          <%= image_tag content.image, alt: content.english_title, class: "img-responsive" %>
+  <div class="card-columns">
+    <% if false %>
+        <div class="card card-inverse animated fadeInLeft">
+          <%= image_tag "don-vi-to-chuc.jpg", alt: "Đơn vị tổ chức", class: "img-responsive" %>
           <div class="card-img-overlay">
-            <h4 class="card-title"><%= content.english_title %></h4>
+            <h4 class="card-title">Đơn vị tổ chức</h4>
           </div>
         </div>
-      </a>
-  <% end %>
+        <div class="card card-inverse animated fadeInDown">
+          <%= image_tag "thong-tin-hoi-thao.jpg", alt: "Thông tin hội thảo", class: "img-responsive" %>
+          <div class="card-img-overlay">
+            <h4 class="card-title">Thông tin hội thảo</h4>
+          </div>
+        </div>
+        <div class="card card-inverse animated fadeInRight">
+          <%= image_tag "chuong-trinh-hoi-thao.png", alt: "Chương trình hội thảo", class: "img-responsive" %>
+          <div class="card-img-overlay">
+            <h4 class="card-title">Chương trình hội thảo</h4>
+          </div>
+        </div>
+        <div class="card card-inverse animated fadeInDown">
+          <%= image_tag "khach-san.jpg", alt: "Khách sạn và du lịch", class: "img-responsive" %>
+          <div class="card-img-overlay">
+            <h4 class="card-title">Khách sạn và du lịch</h4>
+          </div>
+        </div>
+        <div class="card card-inverse animated fadeInRight">
+          <%= image_tag "hanoi.jpg", alt: "Thông tin về hà nội", class: "img-responsive" %>
+          <div class="card-img-overlay">
+            <h4 class="card-title">Thông tin về hà nội</h4>
+          </div>
+        </div>
+        <!-- .end Card -->
 
-</div>
-
-<!--Footer-->
-<footer>
-  <ul id="scroller" class="simply-scroll-list">
-    <% @sponsors.each do |sponsor| %>
-        <li><%= image_tag sponsor.logo, class: "sponsor" %>
+        <!-- Card -->
+        <div class="card card-inverse animated fadeInRight">
+          <%= image_tag "nha-tai-tro.jpg", alt: "Nhà tài trợ", class: "img-responsive" %>
+          <div class="card-img-overlay">
+            <h4 class="card-title">Nhà tài trợ</h4>
+          </div>
+        </div>
     <% end %>
-  </ul>
-</footer>
+
+    <a href="/en/dang-ky">
+      <div class="card card-inverse animated fadeInLeft">
+        <%= image_tag "dang-ky.jpg", alt: "Registration", class: "img-responsive" %>
+        <div class="card-img-overlay">
+          <h4 class="card-title">Registration</h4>
+        </div>
+      </div>
+    </a>
+
+    <% @contents.each do |content| %>
+        <a href="/en/noi-dung/<%= content.id %>">
+          <div class="card card-inverse animated fadeInRight">
+            <%= image_tag content.image, alt: content.english_title, class: "img-responsive" %>
+            <div class="card-img-overlay">
+              <h4 class="card-title"><%= content.english_title %></h4>
+            </div>
+          </div>
+        </a>
+    <% end %>
+
+  </div>
+
+  <!--Footer-->
+  <footer>
+    <ul id="scroller" class="simply-scroll-list">
+      <% @sponsors.each do |sponsor| %>
+          <li><%= image_tag sponsor.logo, class: "sponsor" %>
+      <% end %>
+    </ul>
+  </footer>
+</div>
 <!--/.Footer-->
+<div class="col-md-2">
+  <div class="current-weather" style="margin-top: 200px">
+    <a href="https://www.accuweather.com/vi/vn/hanoi/353412/weather-forecast/353412" class="aw-widget-legal">
+      <!--
+      By accessing and/or using this code snippet, you agree to AccuWeather’s terms and conditions (in English) which can be found at https://www.accuweather.com/en/free-weather-widgets/terms and AccuWeather’s Privacy Statement (in English) which can be found at https://www.accuweather.com/en/privacy.
+      -->
+    </a>
+
+    <div id="awcc1506096222231" class="aw-widget-current" data-locationkey="353412" data-unit="c" data-language="en" data-useip="false" data-uid="awcc1506096222231"></div>
+    <div id="overlay"></div>
+    <script type="text/javascript" src="https://oap.accuweather.com/launch.js"></script>
+  </div>
+
+  <!-- running news -->
+  <div id="running-news" style="margin-top: 70px;">
+    <% if @news %>
+        <h6><b>News</b></h6>
+        <marquee behavior="scroll" direction="up"><%= @news.english_content %></marquee>
+    <% end %>
+  </div>
+  <!-- end runnig news -->
+</div>
