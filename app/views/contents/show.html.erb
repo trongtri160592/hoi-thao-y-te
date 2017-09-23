@@ -1,14 +1,39 @@
-<div class="row" style="padding: 0px; overflow:hidden; height:150px;">
-  <div class="col-xs-12">
-    <a class="navbar-brand logo" href="#">
-      <!-- place your image here -->
-      <%= image_tag "banner.jpg", alt: "company logo", style: "width: 100%;" %>
-    </a>
+<div class="col-md-10">
+  <div class="row" style="padding: 0px; overflow:hidden; height:150px;">
+    <div class="col-xs-12">
+      <a class="navbar-brand logo" href="#">
+        <!-- place your image here -->
+        <%= image_tag "banner.jpg", alt: "company logo", style: "width: 100%;" %>
+      </a>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="category_content">
+      <%= @content.content.html_safe %>
+    </div>
   </div>
 </div>
 
-<div class="row">
-  <div class="category_content">
-  <%= @content.content.html_safe %>
+<div class="col-md-2">
+  <div class="current-weather" style="margin-top: 200px">
+    <a href="https://www.accuweather.com/vi/vn/hanoi/353412/weather-forecast/353412" class="aw-widget-legal">
+      <!--
+      By accessing and/or using this code snippet, you agree to AccuWeather’s terms and conditions (in English) which can be found at https://www.accuweather.com/en/free-weather-widgets/terms and AccuWeather’s Privacy Statement (in English) which can be found at https://www.accuweather.com/en/privacy.
+      -->
+    </a>
+
+    <div id="awcc1506096222231" class="aw-widget-current" data-locationkey="353412" data-unit="c" data-language="vi" data-useip="false" data-uid="awcc1506096222231"></div>
+    <div id="overlay"></div>
+    <script type="text/javascript" src="https://oap.accuweather.com/launch.js"></script>
   </div>
+
+  <!-- running news -->
+  <div id="running-news" style="margin-top: 70px;">
+    <% if @news %>
+        <h6><b>Tin tức</b></h6>
+        <marquee behavior="scroll" direction="up"><%= @news.content %></marquee>
+    <% end %>
+  </div>
+  <!-- end runnig news -->
 </div>

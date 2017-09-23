@@ -47,6 +47,7 @@ class ContentsController < ApplicationController
     if !@content
       redirect_to '/'
     end
+    @news = News.first
   end
 
   private
