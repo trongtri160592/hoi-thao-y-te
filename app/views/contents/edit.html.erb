@@ -33,6 +33,9 @@
       <%= f.label :content, "Nội dung" %> </br>
       <%= f.text_area :content, class: "content_editor" %> </br>
 
+      <%= f.label :english_content, "Content" %> </br>
+      <%= f.text_area :english_content, class: "content_editor" %> </br>
+
       <%= f.submit "Áp dụng", class: "btn btn-primary", id: "lesson_upload", data: {disable_with: "Đang tải lên..."} %>
       <script>
           var content = $("#content_hidden").text();
