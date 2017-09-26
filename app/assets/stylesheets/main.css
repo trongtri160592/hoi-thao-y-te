@@ -24,6 +24,7 @@ a {
 }
 
 .card-title {
+    color: #fff;
     position: relative;
     float: left;
     top: 50%;
