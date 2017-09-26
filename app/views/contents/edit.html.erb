@@ -20,6 +20,9 @@
 
       </div>
   <% end %>
+  <div id="english_content_hidden" style="display: none;">
+    <%= @content.english_content %>
+  </div>
   <div id="content_hidden" style="display: none;">
     <%= @content.content %>
   </div>
@@ -39,8 +42,10 @@
       <%= f.submit "Áp dụng", class: "btn btn-primary", id: "lesson_upload", data: {disable_with: "Đang tải lên..."} %>
       <script>
           var content = $("#content_hidden").text();
+          var english_content = $("#english_content_hidden").text();
           CKEDITOR.on('instanceReady', function (ev) {
-              ev.editor.setData(content);
+              CKEDITOR.instances['content[content]'].setData(content);
+              CKEDITOR.instances['content[english_content]'].setData(english_content);
           });
           CKEDITOR.plugins.addExternal('imageuploader', '/ckeditor/plugins/imageuploader/', 'plugin.js');
           CKEDITOR.plugins.addExternal('imageuploader', '/ckeditor/plugins/uploadimage/', 'plugin.js');
@@ -58,6 +63,19 @@
               contentsCss: [ CKEDITOR.basePath + 'contents.css', 'http://sdk.ckeditor.com/samples/assets/css/widgetstyles.css' ],
 
           });
+          CKEDITOR.replace('content[english_content]', {
+                height: '600px',
+                language: 'vi',
+
+                stylesSet: [
+                    { name: 'Narrow image', type: 'widget', widget: 'image', attributes: { 'class': 'image-narrow' } },
+                    { name: 'Wide image', type: 'widget', widget: 'image', attributes: { 'class': 'image-wide' } }
+                ],
+
+                // Load the default contents.css file plus customizations for this sample.
+                contentsCss: [ CKEDITOR.basePath + 'contents.css', 'http://sdk.ckeditor.com/samples/assets/css/widgetstyles.css' ],
+
+            });
 
       </script>
   <% end %>
