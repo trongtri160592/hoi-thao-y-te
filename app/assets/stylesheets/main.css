@@ -24,13 +24,12 @@ a {
 }
 
 .card-title {
-    color: #fff;
     position: relative;
     float: left;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: #396161;
+    color: #fff;
     text-shadow: -2px 0 2px #222, 0 2px 2px #222, 2px 0 2px #222, 0 -2px 2px #222;
 }
 
