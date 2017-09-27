@@ -20,7 +20,7 @@
         <li class="nav-item">
           <a class="nav-link active" href="/noi-dung/phu-luc/<%= first_subcontent.id %>"><%= first_subcontent.title %></a>
         </li>
-        <% @content.sub_contents.except(first_subcontent).each do |sub_content| %>
+        <% @content.sub_contents.offset(1).each do |sub_content| %>
             <li class="nav-item"><a class="nav-link" href="/noi-dung/phu-luc/<%= sub_content.id %>"><%= sub_content.title %></a></li>
         <% end %>
       </ul>
