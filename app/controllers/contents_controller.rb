@@ -9,10 +9,13 @@ class ContentsController < ApplicationController
     @content = Content.find(params[:id])
     if @content.update_attributes(content_params)
       flash[:success] = "Bạn đã sửa đổi mục #{@content.title} thành công"
-      render 'edit'
     else
       flash[:danger] = "Bạn đã sửa đổi mục #{@content.title} thất bại"
+    end
+    if (params[:has_subcontent].nil?)
       render 'edit'
+    else
+      redirect_to "/contents/#{@content.id}/new"
     end
   end
 
@@ -51,7 +54,7 @@ class ContentsController < ApplicationController
       redirect_to "/contents/edit/#{@subcontent.content_id}"
     else
       @content = Content.find_by_id(params[:content_id])
-      render 'new_subcontent'
+      redirect_to "/contents/#{@content.id}/new"
     end
   end
 

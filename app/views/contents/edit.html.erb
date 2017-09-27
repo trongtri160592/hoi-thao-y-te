@@ -20,6 +20,7 @@
 
       </div>
   <% end %>
+
   <% if @content.sub_contents.any? %>
       <%= form_for @content, url: "/contents/edit/#{@content.id}", method: :post, html: {multipart: true, id: "content_new_form"} do |f| %>
           <%= f.label :title, "Title" %> </br>
@@ -29,12 +30,13 @@
           <%= f.text_field :english_title, class: "form-control" %> </br>
 
           <%= f.label :image, "Ảnh đại diện" %> </br>
-          <%= f.file_field :image, accept: 'image/png,image/jpeg' %> </br>
+          <%= f.file_field :image, accept: 'image/png,image/jpeg' %> </br></br>
 
           <%= f.submit "Áp dụng", class: "btn btn-primary", id: "lesson_upload", data: {disable_with: "Đang tải lên..."} %>
       <% end %>
 
-      <p style="margin-top: 15px;"> <b>Danh mục phụ</b></p>
+      <p style="margin-top: 15px;"><b>Danh mục phụ</b></p>
+
       <div class="col-md-9">
         <a class="btn btn-primary" href="/contents/<%= @content.id %>/new"><i class="fa fa-plus" aria-hidden="true"></i></a></br>
         <table class="table table-bordered table-striped">
@@ -59,67 +61,90 @@
         </table>
       </div>
   <% else %>
+      <div class="checkbox">
+        <input type="checkbox" id="sub-content-checkbox"><b>Có danh mục phụ không?</b></input>
+      </div>
+
+      <div id="subcontent-new-form" style="display:none" >
+        <%= form_for :content, html: {multipart: true, id: "content_new_form"} do |f| %>
+            <%= hidden_field_tag :has_subcontent, value: 'true' %>
+
+            <%= f.label :title, "Tiêu đề" %> </br>
+            <%= f.text_field :title, class: "form-control" %> </br>
+
+            <%= f.label :english_title, "English title" %> </br>
+            <%= f.text_field :english_title, class: "form-control" %> </br>
+
+            <%= f.label :image, "Ảnh đại diện" %> </br>
+            <%= f.file_field :image, accept: 'image/png,image/jpeg' %> </br> </br>
+
+            <%= f.submit "Thêm tiêu đề phụ", class: "btn btn-primary", id: "lesson_upload", data: {disable_with: "Đang tải lên..."} %>
+        <% end %>
+      </div>
+
       <div id="english_content_hidden" style="display: none;">
         <%= @content.english_content %>
       </div>
       <div id="content_hidden" style="display: none;">
         <%= @content.content %>
       </div>
-      <%= form_for @content, url: "/contents/edit/#{@content.id}", method: :post, html: {multipart: true, id: "content_new_form"} do |f| %>
-          <%= f.label :title, "Title" %> </br>
-          <%= f.text_field :title, class: "form-control" %> </br>
+      <div id="content-new-form">
+        <%= form_for @content, url: "/contents/edit/#{@content.id}", method: :post, html: {multipart: true, id: "content_new_form"} do |f| %>
+            <%= f.label :title, "Title" %> </br>
+            <%= f.text_field :title, class: "form-control" %> </br>
 
-          <%= f.label :english_title, "English Title" %> </br>
-          <%= f.text_field :english_title, class: "form-control" %> </br>
+            <%= f.label :english_title, "English Title" %> </br>
+            <%= f.text_field :english_title, class: "form-control" %> </br>
 
-          <%= f.label :image, "Ảnh đại diện" %> </br>
-          <%= f.file_field :image, accept: 'image/png,image/jpeg' %> </br> </br>
+            <%= f.label :image, "Ảnh đại diện" %> </br>
+            <%= f.file_field :image, accept: 'image/png,image/jpeg' %> </br> </br>
 
-          <%= f.label :content, "Nội dung" %> </br>
-          <%= f.text_area :content, class: "content_editor" %> </br>
+            <%= f.label :content, "Nội dung" %> </br>
+            <%= f.text_area :content, class: "content_editor" %> </br>
 
-          <%= f.label :english_content, "Content" %> </br>
-          <%= f.text_area :english_content, class: "content_editor" %> </br>
+            <%= f.label :english_content, "Content" %> </br>
+            <%= f.text_area :english_content, class: "content_editor" %> </br>
 
-          <%= f.submit "Áp dụng", class: "btn btn-primary", id: "lesson_upload", data: {disable_with: "Đang tải lên..."} %>
-          <script>
-              var content = $("#content_hidden").text();
-              var english_content = $("#english_content_hidden").text();
-              CKEDITOR.on('instanceReady', function (ev) {
-                  CKEDITOR.instances['content[content]'].setData(content);
-                  CKEDITOR.instances['content[english_content]'].setData(english_content);
-              });
-              CKEDITOR.plugins.addExternal('imageuploader', '/ckeditor/plugins/imageuploader/', 'plugin.js');
-              CKEDITOR.plugins.addExternal('imageuploader', '/ckeditor/plugins/uploadimage/', 'plugin.js');
-              CKEDITOR.plugins.addExternal('imageuploader', '/ckeditor/plugins/image2/', 'plugin.js');
-              CKEDITOR.replace('content[content]', {
-                  height: '600px',
-                  language: 'vi',
+            <%= f.submit "Áp dụng", class: "btn btn-primary", id: "lesson_upload", data: {disable_with: "Đang tải lên..."} %>
+            <script>
+                var content = $("#content_hidden").text();
+                var english_content = $("#english_content_hidden").text();
+                CKEDITOR.on('instanceReady', function (ev) {
+                    CKEDITOR.instances['content[content]'].setData(content);
+                    CKEDITOR.instances['content[english_content]'].setData(english_content);
+                });
+                CKEDITOR.plugins.addExternal('imageuploader', '/ckeditor/plugins/imageuploader/', 'plugin.js');
+                CKEDITOR.plugins.addExternal('imageuploader', '/ckeditor/plugins/uploadimage/', 'plugin.js');
+                CKEDITOR.plugins.addExternal('imageuploader', '/ckeditor/plugins/image2/', 'plugin.js');
+                CKEDITOR.replace('content[content]', {
+                    height: '600px',
+                    language: 'vi',
 
-                  stylesSet: [
-                      {name: 'Narrow image', type: 'widget', widget: 'image', attributes: {'class': 'image-narrow'}},
-                      {name: 'Wide image', type: 'widget', widget: 'image', attributes: {'class': 'image-wide'}}
-                  ],
+                    stylesSet: [
+                        {name: 'Narrow image', type: 'widget', widget: 'image', attributes: {'class': 'image-narrow'}},
+                        {name: 'Wide image', type: 'widget', widget: 'image', attributes: {'class': 'image-wide'}}
+                    ],
 
-                  // Load the default contents.css file plus customizations for this sample.
-                  contentsCss: [CKEDITOR.basePath + 'contents.css', 'http://sdk.ckeditor.com/samples/assets/css/widgetstyles.css'],
+                    // Load the default contents.css file plus customizations for this sample.
+                    contentsCss: [CKEDITOR.basePath + 'contents.css', 'http://sdk.ckeditor.com/samples/assets/css/widgetstyles.css'],
 
-              });
-              CKEDITOR.replace('content[english_content]', {
-                  height: '600px',
-                  language: 'vi',
+                });
+                CKEDITOR.replace('content[english_content]', {
+                    height: '600px',
+                    language: 'vi',
 
-                  stylesSet: [
-                      {name: 'Narrow image', type: 'widget', widget: 'image', attributes: {'class': 'image-narrow'}},
-                      {name: 'Wide image', type: 'widget', widget: 'image', attributes: {'class': 'image-wide'}}
-                  ],
+                    stylesSet: [
+                        {name: 'Narrow image', type: 'widget', widget: 'image', attributes: {'class': 'image-narrow'}},
+                        {name: 'Wide image', type: 'widget', widget: 'image', attributes: {'class': 'image-wide'}}
+                    ],
 
-                  // Load the default contents.css file plus customizations for this sample.
-                  contentsCss: [CKEDITOR.basePath + 'contents.css', 'http://sdk.ckeditor.com/samples/assets/css/widgetstyles.css'],
+                    // Load the default contents.css file plus customizations for this sample.
+                    contentsCss: [CKEDITOR.basePath + 'contents.css', 'http://sdk.ckeditor.com/samples/assets/css/widgetstyles.css'],
 
-              });
+                });
 
-          </script>
-      <% end %>
+            </script>
+        <% end %>
+      </div>
   <% end %> <!-- if subcontents.any? -->
 </div>
