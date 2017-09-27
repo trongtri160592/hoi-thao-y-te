@@ -4,19 +4,33 @@
     |
     <%= link_to_unless I18n.locale == :en, "English", locale: :en %>
   </p>
+
   <div class="row" style="padding: 0px; overflow:hidden; height:150px;">
     <div class="col-xs-12">
-      <a class="navbar-brand logo" href="#">
+      <a class="navbar-brand logo" href="/">
         <!-- place your image here -->
         <%= image_tag "banner.jpg", alt: "company logo", style: "width: 100%;" %>
       </a>
     </div>
   </div>
 
+  <% if @content.sub_contents.any? %>
+      <ul class="nav nav-tabs navbar-toggleable-md fixed-top navbar-light bg-faded" style="margin-top: 10px;">
+        <% first_subcontent = @content.sub_contents.first %>
+        <li class="nav-item">
+          <a class="nav-link active" href="/noi-dung/phu-luc/<%= first_subcontent.id %>"><%= first_subcontent.title %></a>
+        </li>
+        <% @content.sub_contents.except(first_subcontent).each do |sub_content| %>
+            <li class="nav-item"><a class="nav-link" href="/noi-dung/phu-luc/<%= sub_content.id %>"><%= sub_content.title %></a></li>
+        <% end %>
+      </ul>
+      <% @content = first_subcontent %>
+  <% end %>
+
   <div class="col-md-8 col-md-offset-2">
     <div class="row">
       <div class="category_content">
-        <%= @content.content.html_safe if @content.content%>
+        <%= @content.content.html_safe if @content.content %>
       </div>
     </div>
   </div>

@@ -1,0 +1,56 @@
+<div class="col-md-3">
+  <div class="list-group">
+    <a class="list-group-item" href="/"><i class="fa fa-home fa-fw" aria-hidden="true"></i>&nbsp; Trang chủ</a>
+    <a class="list-group-item active" href="/quan-ly"><i class="fa fa-book fa-fw" aria-hidden="true"></i>&nbsp; Danh mục</a>
+    <a class="list-group-item" href="/sponsors"><i class="fa fa-money fa-fw" aria-hidden="true"></i>&nbsp; Tài trợ</a>
+    <a class="list-group-item" href="/registrars"><i class="fa fa-list fa-fw" aria-hidden="true"></i>&nbsp; Danh sách
+      đăng ký</a>
+    <a class="list-group-item" href="/logout"><i class="fa fa-sign-out fa-fw" aria-hidden="true"></i>&nbsp; Đăng
+      xuất</a>
+  </div>
+</div>
+
+<div class="col-md-9">
+  <% if !@subcontent.errors.empty? %>
+      <div class="alert alert-error">
+        <ul>
+          <% @subcontent.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+          <% end %>
+        </ul>
+
+      </div>
+  <% end %>
+  <p><b><h3>Danh mục chính: <%= @content.title %></h3> </b></p>
+  <%= form_for :sub_content, html: {multipart: true, id: "content_new_form"} do |f| %>
+      <%= f.hidden_field :content_id, value: @content.id %>
+
+      <%= f.label :title, "Tiêu đề" %> </br>
+      <%= f.text_field :title, class: "form-control" %> </br>
+
+      <%= f.label :english_title, "English title" %> </br>
+      <%= f.text_field :english_title, class: "form-control" %> </br>
+
+      <%= f.label :content, "Nội dung" %> </br>
+      <%= f.text_area :content, class: "content_editor" %> </br>
+
+      <%= f.label :english_content, "Content" %> </br>
+      <%= f.text_area :english_content, class: "content_editor" %> </br>
+
+      <%= f.submit "Áp dụng", class: "btn btn-primary", id: "lesson_upload", data: {disable_with: "Đang tải lên..."} %>
+      <script>
+          CKEDITOR.replace('sub_content[content]', {
+              height: '600px',
+              language: 'vi'
+          });
+          CKEDITOR.replace('sub_content[english_content]', {
+              height: '600px',
+              language: 'en'
+          });
+          CKEDITOR.editorConfig = function (config) {
+              config.extraPlugins = 'imageuploader';
+              config.language = 'en';
+          }
+      </script>
+  <% end %>
+</div>

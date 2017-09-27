@@ -4,6 +4,7 @@
     |
     <%= link_to_unless I18n.locale == :en, "English", locale: :en %>
   </p>
+
   <div class="row" style="padding: 0px; overflow:hidden; height:150px;">
     <div class="col-xs-12">
       <a class="navbar-brand logo" href="/">
@@ -13,23 +14,26 @@
     </div>
   </div>
 
-  <% if @content.sub_contents.any? %>
-      <ul class="nav nav-tabs navbar-toggleable-md fixed-top navbar-light bg-faded" style="margin-top: 10px;">
-        <% first_subcontent = @content.sub_contents.first %>
-        <li class="nav-item">
-          <a class="nav-link active" href="/en/noi-dung/phu-luc/<%= first_subcontent.id %>"><%= first_subcontent.english_title %></a>
-        </li>
-        <% @content.sub_contents.except(first_subcontent).each do |sub_content| %>
-            <li class="nav-item"><a class="nav-link" href="/en/noi-dung/phu-luc/<%= sub_content.id %>"><%= sub_content.english_title %></a></li>
-        <% end %>
-      </ul>
-      <% @content = first_subcontent %>
-  <% end %>
+  <div class="sub-menu" style="margin-top: 10px;">
+    <ul class="nav nav-tabs navbar-toggleable-md fixed-top navbar-light bg-faded" style="margin-top: 10px;">
+      <% @content.sub_contents.each do |sub_content| %>
+          <% if sub_content.id == @subcontent.id %>
+              <li class="nav-item">
+                <a class="nav-link active" href="/noi-dung/phu-luc/<%= sub_content.id %>"><%= sub_content.title %></a>
+              </li>
+          <% else %>
+              <li class="nav-item">
+                <a class="nav-link" href="/noi-dung/phu-luc/<%= sub_content.id %>"><%= sub_content.title %></a></li>
+          <% end %>
+
+      <% end %>
+    </ul>
+  </div>
 
   <div class="col-md-8 col-md-offset-2">
     <div class="row">
       <div class="category_content">
-        <%= @content.english_content.html_safe if @content.english_content %>
+        <%= @subcontent.content.html_safe if @subcontent.content %>
       </div>
     </div>
   </div>
@@ -43,7 +47,7 @@
       -->
     </a>
 
-    <div id="awcc1506096222231" class="aw-widget-current" data-locationkey="353412" data-unit="c" data-language="en" data-useip="false" data-uid="awcc1506096222231"></div>
+    <div id="awcc1506096222231" class="aw-widget-current" data-locationkey="353412" data-unit="c" data-language="vi" data-useip="false" data-uid="awcc1506096222231"></div>
     <div id="overlay"></div>
     <script type="text/javascript" src="https://oap.accuweather.com/launch.js"></script>
   </div>
@@ -51,8 +55,8 @@
   <!-- running news -->
   <div id="running-news" style="margin-top: 70px;">
     <% if @news %>
-        <h6><b>News</b></h6>
-        <marquee behavior="scroll" direction="up"><%= @news.english_content %></marquee>
+        <h6><b>Tin tức</b></h6>
+        <marquee behavior="scroll" direction="up"><%= @news.content %></marquee>
     <% end %>
   </div>
   <!-- end runnig news -->

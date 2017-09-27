@@ -1,0 +1,86 @@
+<div class="col-md-3">
+  <div class="list-group">
+    <a class="list-group-item" href="/"><i class="fa fa-home fa-fw" aria-hidden="true"></i>&nbsp; Trang chủ</a>
+    <a class="list-group-item active" href="/quan-ly"><i class="fa fa-book fa-fw" aria-hidden="true"></i>&nbsp; Danh mục</a>
+    <a class="list-group-item" href="/sponsors"><i class="fa fa-money fa-fw" aria-hidden="true"></i>&nbsp; Tài trợ</a>
+    <a class="list-group-item" href="/registrars"><i class="fa fa-list fa-fw" aria-hidden="true"></i>&nbsp; Danh sách
+      đăng ký</a>
+    <a class="list-group-item" href="/logout"><i class="fa fa-sign-out fa-fw" aria-hidden="true"></i>&nbsp; Đăng
+      xuất</a>
+  </div>
+</div>
+<div class="col-md-9">
+  <% if !@subcontent.errors.empty? %>
+      <div class="alert alert-error">
+        <ul>
+          <% @subcontent.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+          <% end %>
+        </ul>
+
+      </div>
+  <% end %>
+
+  <div id="english_content_hidden" style="display: none;">
+    <%= @subcontent.english_content %>
+  </div>
+  <div id="content_hidden" style="display: none;">
+    <%= @subcontent.content %>
+  </div>
+  <%= form_for @subcontent, url: "/subcontents/edit/#{@subcontent.id}", method: :post, html: {multipart: true, id: "content_new_form"} do |f| %>
+      <%= f.label :title, "Title" %> </br>
+      <%= f.text_field :title, class: "form-control" %> </br>
+
+      <%= f.label :english_title, "English Title" %> </br>
+      <%= f.text_field :english_title, class: "form-control" %> </br>
+
+      <%= f.label :image, "Ảnh đại diện" %> </br>
+      <%= f.file_field :image, accept: 'image/png,image/jpeg' %> </br> </br>
+
+      <%= f.label :content, "Nội dung" %> </br>
+      <%= f.text_area :content, class: "content_editor" %> </br>
+
+      <%= f.label :english_content, "Content" %> </br>
+      <%= f.text_area :english_content, class: "content_editor" %> </br>
+
+      <%= f.submit "Áp dụng", class: "btn btn-primary", id: "lesson_upload", data: {disable_with: "Đang tải lên..."} %>
+      <script>
+          var content = $("#content_hidden").text();
+          var english_content = $("#english_content_hidden").text();
+          CKEDITOR.on('instanceReady', function (ev) {
+              CKEDITOR.instances['sub_content[content]'].setData(content);
+              CKEDITOR.instances['sub_content[english_content]'].setData(english_content);
+          });
+          CKEDITOR.plugins.addExternal('imageuploader', '/ckeditor/plugins/imageuploader/', 'plugin.js');
+          CKEDITOR.plugins.addExternal('imageuploader', '/ckeditor/plugins/uploadimage/', 'plugin.js');
+          CKEDITOR.plugins.addExternal('imageuploader', '/ckeditor/plugins/image2/', 'plugin.js');
+          CKEDITOR.replace('sub_content[content]', {
+              height: '600px',
+              language: 'vi',
+
+              stylesSet: [
+                  {name: 'Narrow image', type: 'widget', widget: 'image', attributes: {'class': 'image-narrow'}},
+                  {name: 'Wide image', type: 'widget', widget: 'image', attributes: {'class': 'image-wide'}}
+              ],
+
+              // Load the default contents.css file plus customizations for this sample.
+              contentsCss: [CKEDITOR.basePath + 'contents.css', 'http://sdk.ckeditor.com/samples/assets/css/widgetstyles.css'],
+
+          });
+          CKEDITOR.replace('sub_content[english_content]', {
+              height: '600px',
+              language: 'vi',
+
+              stylesSet: [
+                  {name: 'Narrow image', type: 'widget', widget: 'image', attributes: {'class': 'image-narrow'}},
+                  {name: 'Wide image', type: 'widget', widget: 'image', attributes: {'class': 'image-wide'}}
+              ],
+
+              // Load the default contents.css file plus customizations for this sample.
+              contentsCss: [CKEDITOR.basePath + 'contents.css', 'http://sdk.ckeditor.com/samples/assets/css/widgetstyles.css'],
+
+          });
+
+      </script>
+  <% end %>
+</div>

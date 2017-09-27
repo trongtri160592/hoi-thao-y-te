@@ -12,5 +12,16 @@ $(function() {
             $("#scroller").simplyScroll();
         });
     })(jQuery);
+
+    $('#sub-content-checkbox').change(function() {
+        if($(this).is(':checked')) {
+            $("#content-new-form").hide();
+            $("#subcontent-new-form").show();
+        } else {
+            $("#content-new-form").show();
+            $("#subcontent-new-form").hide();
+        }
+    });
 });
+
 $(window).unload(function () { $(window).unbind('unload'); });

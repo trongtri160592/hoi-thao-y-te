@@ -32,6 +32,13 @@ Rails.application.routes.draw do
     delete '/sponsors/:id' => 'sponsors#destroy'
     get '/news' => 'news#index'
     post '/news' => 'news#edit'
+    get '/contents/:content_id/new' => 'contents#new_subcontent'
+
+    post '/contents/:content_id/new' => 'contents#add_subcontent'
+    get '/noi-dung/phu-luc/:id' => 'contents#show_subcontent'
+    get '/subcontents/edit/:id' => 'contents#edit_subcontent'
+    delete '/subcontents/:id' => 'contents#destroy_subcontent'
+    post 'subcontents/edit/:id' => 'contents#update_subcontent'
 
     get '*path' => redirect("/")
   end
