@@ -13,7 +13,8 @@
   <link rel="stylesheet" href="css/jquery.simplyscroll.css"/>
   <link rel="stylesheet" href="https://raw.githubusercontent.com/daneden/animate.css/master/animate.css"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css"/>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/locale/vi.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
   <script src="/ckeditor/ckeditor.js"></script>
@@ -21,10 +22,23 @@
 </head>
 <body>
 <div class="container m-t-md">
-  <% flash.each do |message_type, message| %>
-      <div class="alert alert-<%= message_type %>"><%= message %></div>
-  <% end %>
-  <%= yield %>
+  <div class="row">
+    <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>"><%= message %></div>
+    <% end %>
+    <%= yield %>
+  </div>
+  <div class="row">
+    <div class="footer_text">
+      <address>
+        Phone number: (+844) 3 825 2 143 <br>
+        Fax: (+844) 3 825 3 757 <br>
+        Website: <a href="www.benhvienk.vn">www.benhvienk.vn</a> <br>
+        Email: bvk@nci.org.vn <br>
+      </address>
+      <p>Copyright © CancerControl 2017 Organizing Committee. All Rights Reserved.</p>
+    </div>
+  </div>
 </div>
 <%= javascript_include_tag 'jquery.simplyscroll' %>
 <%= stylesheet_link_tag 'jquery.simplyscroll' %>
