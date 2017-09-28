@@ -108,7 +108,7 @@
   <div id="running-news" style="margin-top: 70px;">
     <% if @news %>
         <h6><b>Tin tức</b></h6>
-        <marquee behavior="scroll" direction="up"><%= @news.content %></marquee>
+        <span behavior="scroll" direction="up" style="word-wrap: break-word;"><%= @news.content.html_safe if @news.content %></span>
     <% end %>
   </div>
   <!-- end runnig news -->

@@ -15,16 +15,58 @@
       </div>
     </div>
     <div class="col-md-9">
+      <div id="english_content_hidden" style="display: none;">
+        <%= @news.english_content if @news %>
+      </div>
+      <div id="content_hidden" style="display: none;">
+        <%= @news.content if @news %>
+      </div>
       <%= form_for :news, url: "/news", html: {multipart: true, id: "sponsor_new_form"} do |f| %>
           <%= f.label :content %> </br>
-          <% @old_content = @news.content if @news %>
-          <%= f.text_field :content, class: "form-control", value: @old_content %> </br>
+          <%= f.text_area :content, class: "form-control" %> </br>
 
           <%= f.label :english_content %> </br>
-          <% @old_english_content = @news.english_content if @news %>
-          <%= f.text_field :english_content, class: "form-control", value: @old_english_content %> </br>
+          <%= f.text_area :english_content, class: "form-control" %> </br>
 
           <%= submit_tag "Áp dụng", class: "btn btn-primary" %>
+
+          <script>
+              var content = $("#content_hidden").text();
+              var english_content = $("#english_content_hidden").text();
+              CKEDITOR.on('instanceReady', function (ev) {
+                  CKEDITOR.instances['news[content]'].setData(content);
+                  CKEDITOR.instances['news[english_content]'].setData(english_content);
+              });
+              CKEDITOR.plugins.addExternal('imageuploader', '/ckeditor/plugins/imageuploader/', 'plugin.js');
+              CKEDITOR.plugins.addExternal('imageuploader', '/ckeditor/plugins/uploadimage/', 'plugin.js');
+              CKEDITOR.plugins.addExternal('imageuploader', '/ckeditor/plugins/image2/', 'plugin.js');
+              CKEDITOR.replace('news[content]', {
+                  height: '600px',
+                  language: 'vi',
+
+                  stylesSet: [
+                      {name: 'Narrow image', type: 'widget', widget: 'image', attributes: {'class': 'image-narrow'}},
+                      {name: 'Wide image', type: 'widget', widget: 'image', attributes: {'class': 'image-wide'}}
+                  ],
+
+                  // Load the default contents.css file plus customizations for this sample.
+                  contentsCss: [CKEDITOR.basePath + 'contents.css', 'http://sdk.ckeditor.com/samples/assets/css/widgetstyles.css'],
+
+              });
+              CKEDITOR.replace('news[english_content]', {
+                  height: '600px',
+                  language: 'vi',
+
+                  stylesSet: [
+                      {name: 'Narrow image', type: 'widget', widget: 'image', attributes: {'class': 'image-narrow'}},
+                      {name: 'Wide image', type: 'widget', widget: 'image', attributes: {'class': 'image-wide'}}
+                  ],
+
+                  // Load the default contents.css file plus customizations for this sample.
+                  contentsCss: [CKEDITOR.basePath + 'contents.css', 'http://sdk.ckeditor.com/samples/assets/css/widgetstyles.css'],
+
+              });
+          </script>
       <% end %>
     </div>
 <% else %>
