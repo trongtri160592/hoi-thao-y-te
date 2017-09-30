@@ -94,3 +94,19 @@ div.card-columns {
     line-height: 16px;
     letter-spacing: -0.5px;
 }
+
+.card-title {
+    font-size: 1.5rem;
+}
+
+@media only screen and (max-width: 768px) {
+    .card-title {
+        font-size: 1.2rem;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    b {
+        font-size: 1rem;
+    }
+}
