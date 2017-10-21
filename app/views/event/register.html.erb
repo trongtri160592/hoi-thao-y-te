@@ -47,7 +47,18 @@
       <%= f.text_field :email, class: "form-control", type: "email", required: true, onInvalid: "this.setCustomValidity('Email không đúng định dạng')" %> </br>
 
       <%= f.label :phone, "Số điện thoại (*)" %> &nbsp;
-      <%= f.text_field :phone, class: "form-control", type: "number", required: true, onInvalid: "this.setCustomValidity('Số điện thoại phải là chữ số')" %> </br> </br>
+      <%= f.text_field :phone, class: "form-control", type: "number", required: true, onInvalid: "this.setCustomValidity('Số điện thoại phải là chữ số')" %> </br>
+
+      <input type="checkbox" name="course" value="1" id="course-register"> Đăng ký khóa học<br> <br>
+
+      <div id="course-field" style="display: none;">
+        <%= f.collection_check_boxes :course_ids, Course.all, :id, :name do |b| %>
+            <div class="collection-check-box">
+              <%= b.check_box %>
+              <%= b.label %>
+            </div> <br>
+        <% end %>
+      </div>
 
       <%= f.submit "Đăng ký", class: "btn btn-primary", data: {disable_with: "Đang tải lên..."} %>
       <script>
@@ -61,11 +72,29 @@
               maxDate: moment(),
               minDate: new Date(currentYear - 100, currentMonth, currentDate)
           });
+
+          $('#course-register').change(function() {
+              if(this.checked) {
+                  $('#course-field').show();
+              } else {
+                  $('#course-field').hide();
+              }
+          });
       </script>
   <% end %>
 </div>
 <style>
     body {
         background-color: #eeeeee;
+    }
+
+    .collection-check-box {
+        display: block;
+    }
+    label {
+        display: inline;
+    }
+    input[type=checkbox] {
+        display: inline;
     }
 </style>

@@ -20,6 +20,6 @@ class EventController < ApplicationController
 
   private
   def registrar_params
-    params.require(:registrar).permit(:name, :birth, :nationality, :company, :job, :domain, :image, :cvs, :email, :phone)
+    params.require(:registrar).permit(:name, :birth, :nationality, :company, :job, :domain, :image, :cvs, :email, :phone, course_ids: [])
   end
 end
