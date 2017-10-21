@@ -1,4 +1,9 @@
 <div class="col-md-6 col-md-offset-3">
+  <p>
+    <%= link_to_unless I18n.locale == :vi, "Tiếng Việt", locale: :vi %>
+    |
+    <%= link_to_unless I18n.locale == :en, "English", locale: :en %>
+  </p>
   <% if !@registrar.errors.empty? %>
       <div class="alert alert-error">
         <ul>

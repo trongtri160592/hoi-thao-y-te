@@ -1,4 +1,9 @@
 <div class="col-md-6 col-md-offset-3">
+  <p>
+    <%= link_to_unless I18n.locale == :vi, "Tiếng Việt", locale: :vi %>
+    |
+    <%= link_to_unless I18n.locale == :en, "English", locale: :en %>
+  </p>
   <% if !@registrar.errors.empty? %>
       <div class="alert alert-error">
         <ul>
@@ -49,6 +54,17 @@
       <%= f.label :phone, "Phone number (*)" %> &nbsp;
       <%= f.text_field :phone, class: "form-control", type: "number", required: true %> </br> </br>
 
+      <input type="checkbox" name="course" value="1" id="course-register"> Register courses<br> <br>
+
+      <div id="course-field" style="display: none;">
+        <%= f.collection_check_boxes :course_ids, Course.all, :id, :english_name do |b| %>
+            <div class="collection-check-box">
+              <%= b.check_box %>
+              <%= b.label %>
+            </div> <br>
+        <% end %>
+      </div>
+
       <%= f.submit "Register", class: "btn btn-primary", data: {disable_with: "Uploading..."} %>
       <script>
           var date = new Date();
@@ -61,11 +77,28 @@
               maxDate: moment(),
               minDate: new Date(currentYear - 100, currentMonth, currentDate)
           });
+
+          $('#course-register').change(function() {
+              if(this.checked) {
+                  $('#course-field').show();
+              } else {
+                  $('#course-field').hide();
+              }
+          });
       </script>
   <% end %>
 </div>
 <style>
     body {
         background-color: #eeeeee;
+    }
+    .collection-check-box {
+        display: block;
+    }
+    label {
+        display: inline;
+    }
+    input[type=checkbox] {
+        display: inline;
     }
 </style>
