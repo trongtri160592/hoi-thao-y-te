@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+          xmlns:o="urn:schemas-microsoft-com:office:office"
+          xmlns:x="urn:schemas-microsoft-com:office:excel"
+          xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+          xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell>
+          <Data ss:Type="String">Họ và tên</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Ngày sinh</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Quốc tịch</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Cơ quan tổ chức</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Nghề nghiệp</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Lĩnh vực hoạt</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Email</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Số điện thoại</Data>
+        </Cell>
+        <Cell>
+          <Data ss:Type="String">Khóa học đã đăng ký</Data>
+        </Cell>
+      </Row>
+      <% @all_registrars.each do |registrar| %>
+          <Row>
+            <Cell>
+              <Data ss:Type="String"><%= registrar.name %></Data>
+            </Cell>
+            <Cell>
+              <Data ss:Type="String"><%= registrar.birth %></Data>
+            </Cell>
+            <Cell>
+              <Data ss:Type="String"><%= registrar.nationality %></Data>
+            </Cell>
+            <Cell>
+              <Data ss:Type="String"><%= registrar.company %></Data>
+            </Cell>
+            <Cell>
+              <Data ss:Type="String"><%= registrar.job %></Data>
+            </Cell>
+            <Cell>
+              <Data ss:Type="String"><%= registrar.domain %></Data>
+            </Cell>
+            <Cell>
+              <Data ss:Type="String"><%= registrar.email %></Data>
+            </Cell>
+            <Cell>
+              <Data ss:Type="String"><%= registrar.phone %></Data>
+            </Cell>
+            <Cell>
+              <Data ss:Type="String"><% if registrar.courses.length > 0 %><% registrar.courses.each do |course| %><%= course.name %>
+                    <% end %>
+                <% end %></Data>
+            </Cell>
+          </Row>
+      <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>

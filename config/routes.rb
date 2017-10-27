@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     get '/noi-dung/:content_id' => 'contents#show'
     delete '/contents/:content_id' => 'contents#destroy'
 
-    get '/registrars' => 'registrars#index'
+    get '/registrars' => 'registrars#index', as: :registrar
 
     get '/quan-ly' => 'managers#index'
     get '/dang-ky' => 'event#register'
